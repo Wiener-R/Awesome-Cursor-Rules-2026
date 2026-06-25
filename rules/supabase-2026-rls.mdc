@@ -1,0 +1,34 @@
+---
+description: Enforce Supabase 2026 Row Level Security (RLS) policies and prevent AI from generating unsecure PostgreSQL queries.
+globs: supabase/migrations/*.sql, src/lib/supabase.ts
+---
+
+# Supabase Row Level Security (RLS) & Client Discipline
+
+## Critical Rule: RLS Enforcement
+- ALL tables created in migration files MUST explicitly enable Row Level Security (RLS). Never leave a table unprotected.
+- When generating client-side queries, NEVER bypass RLS using the service_role key unless explicitly instructed for background cron jobs.
+
+## Implementation Standard
+
+### 1. Secure Table Migration Structure
+When generating tables, always append the RLS activation and policy injection blocks:
+
+'''sql
+create table public.profiles (
+  id uuid references auth.users on delete cascade primary key,
+  updated_at timestamp with time zone,
+  username text unique
+);
+
+-- Always enable RLS immediately
+alter table public.profiles enable row level security;
+
+-- Create secure select policy
+create policy "Public profiles are viewable by everyone." on public.profiles
+  for select using (true);
+
+-- Create secure update policy
+create policy "Users can update their own profiles." on public.profiles
+  for update using (auth.uid() = id);
+'''
