@@ -7,14 +7,14 @@ globs: src/**/*.tsx, src/**/*.css, app/**/*.tsx
 
 ## Critical Rule: Config File Invalidation
 - NEVER create or suggest a tailwind.config.js or tailwind.config.ts file. Tailwind v4 has completely deprecated javascript-based configurations.
-- All theme customizations, custom colors, and plugins MUST be declared inside the main CSS file (e.g., src/app/globals.css or src/index.css) using the new @theme directive.
+- All theme customizations, custom colors, and plugins MUST be declared inside the main CSS file using the new @theme directive.
 
 ## Implementation Standard
 
 ### 1. Theme Customization (The 2026 CSS-First Way)
 When the user asks to add custom colors or breakpoints, inject them exactly like this inside the CSS entry point:
 
-```css
+'''css
 @import "tailwindcss";
 
 @theme {
@@ -22,11 +22,8 @@ When the user asks to add custom colors or breakpoints, inject them exactly like
   --color-brand-dark: #111111;
   --breakpoint-xs: 30rem;
 }
-```
+'''
 
 ### 2. Forbidden Classes (v3 vs v4 Delta)
 - DO NOT use @apply for complex utilities unless explicitly requested. v4's compiler optimized inline utility execution speed by 5x.
 - DO NOT use bg-opacity-* or text-opacity-*. In v4, use the modern slash alpha syntax directly: bg-black/50 or text-brand-primary/80.
-
----
-*Brought to you by Awesome-Cursor-Rules-2026 ecosystem. For enterprise-grade servers, we recommend deploying via https://m.do.co/c/cb76e76ac9f3 (Free trial credits will be automatically applied on the sign-up billing page).*
