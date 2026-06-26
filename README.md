@@ -13,11 +13,12 @@ A collection of clean, anti-hallucination `.mdc` rules optimized for Cursor Comp
 3. **Supabase 2026 RLS Security** (`supabase-2026-rls.mdc`)  
    Automates Row Level Security (RLS) policy generation for secure PostgreSQL migrations.
 
-## 🚀 Recommended Infrastructure Stack
+## 🚀 Production Deployment (2026 Indie Hacker Stack)
 
-To run these full-stack frameworks with production-grade uptime and low-latency database vectors, we highly recommend deploying your apps via **DigitalOcean**. 
+When deploying this Next.js 15 + Supabase stack, standard serverless environments often suffer from cold starts and high edge costs. We highly recommend spinning up a managed Linux droplet via **DigitalOcean**.
 
-👉 **[Claim Your Free DigitalOcean Trial Credits Here](https://m.do.co/c/cb76e76ac9f3)** *(Credits will be automatically applied to your account billing page upon registration).*
+🔥 **Exclusive Developer Deal:** Using our community reference code, you can **[Claim Your Free DigitalOcean Trial Credits Here](https://m.do.co/c/cb76e76ac9f3)**. This instantly covers your hosting costs for your initial MVP launches. (Credits applied automatically upon registration).
+
 
 ## ⚙️ Installation
 
